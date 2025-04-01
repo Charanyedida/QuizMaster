@@ -916,7 +916,7 @@ function renderAiHelpPage() {
                 <div class="ai-chat-container">
                     <div class="ai-chat-messages" id="ai-chat-messages">
                         <div class="message ai-message">
-                            Hello! I'm your Quiz Assistant powered by DeepSeek. How can I help you with your quiz questions today?
+                            Hello! I'm your Quiz Assistant. How can I help you with your quiz questions today?
                         </div>
                         <div class="typing-indicator" id="typing-indicator">
                             <span>...</span>
