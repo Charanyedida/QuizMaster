@@ -905,7 +905,7 @@ return array;
 
 // OpenRouter API Integration with DeepSeek model
 const OPENROUTER_API_URL = 'https://openrouter.ai/api/v1/chat/completions';
-const OPENROUTER_API_KEY = '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'; // Replace with your actual API key
+const OPENROUTER_API_KEY = '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';
 
 function renderAiHelpPage() {
     pageContainer.innerHTML = `
@@ -916,10 +916,13 @@ function renderAiHelpPage() {
                 <div class="ai-chat-container">
                     <div class="ai-chat-messages" id="ai-chat-messages">
                         <div class="message ai-message">
-                            Hello! I'm your Quiz Assistant. How can I help you with your quiz questions today?
+                            <div class="ai-avatar">🤖</div>
+                            <div class="ai-content">
+                                Hello! I'm your Quiz Assistant. How can I help you with your quiz questions today?
+                            </div>
                         </div>
                         <div class="typing-indicator" id="typing-indicator">
-                            <span>...</span>
+                            <span>.</span><span>.</span><span>.</span>
                         </div>
                     </div>
                     <div class="ai-chat-input">
@@ -929,6 +932,182 @@ function renderAiHelpPage() {
                 </div>
             </div>
         </div>
+        <style>
+            .ai-chat-container {
+                border-radius: 10px;
+                background-color: #f5f7fa;
+                height:75vh;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                overflow: hidden;
+            }
+            
+            .ai-chat-messages {
+                height: 400px;
+                overflow-y: auto;
+                padding: 16px;
+                background-color: #ffffff;
+            }
+            
+            .message {
+                margin-bottom: 16px;
+                max-width: 80%;
+                clear: both;
+                overflow-wrap: break-word;
+            }
+            
+            .user-message {
+                float: right;
+                background-color: #1e88e5;
+                color: white;
+                border-radius: 18px 18px 0 18px;
+                padding: 12px 16px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            }
+            
+            .ai-message {
+                float: left;
+                width: 85%;
+                display: flex;
+                align-items: flex-start;
+            }
+            
+            .ai-avatar {
+                background-color: #6a11cb;
+                color: white;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 10px;
+                flex-shrink: 0;
+            }
+            
+            .ai-content {
+                background-color: #f0f2f5;
+                border-radius: 0 18px 18px 18px;
+                padding: 12px 16px;
+                box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+                color: #333;
+                line-height: 1.5;
+            }
+            
+            .ai-content h3 {
+                margin-top: 8px;
+                margin-bottom: 8px;
+                color: #4527a0;
+                font-weight: 600;
+            }
+            
+            .ai-content strong {
+                color: #303f9f;
+                font-weight: 600;
+            }
+            
+            .ai-content ul, .ai-content ol {
+                padding-left: 20px;
+                margin: 8px 0;
+            }
+            
+            .ai-content code {
+                background-color: #e8eaf6;
+                padding: 2px 4px;
+                border-radius: 4px;
+                font-family: monospace;
+                color: #d81b60;
+            }
+            
+            .ai-content pre {
+                background-color: #263238;
+                color: #eeffff;
+                padding: 12px;
+                border-radius: 8px;
+                overflow-x: auto;
+                margin: 8px 0;
+            }
+            
+            .ai-content pre code {
+                background-color: transparent;
+                color: inherit;
+                padding: 0;
+            }
+            
+            .typing-indicator {
+                display: none;
+                padding: 12px 16px;
+                background-color: #f0f2f5;
+                border-radius: 18px;
+                width: 60px;
+                margin-bottom: 16px;
+                float: left;
+                clear: both;
+            }
+            
+            .typing-indicator span {
+                height: 8px;
+                width: 8px;
+                float: left;
+                margin: 0 1px;
+                background-color: #9e9ea1;
+                display: block;
+                border-radius: 50%;
+                opacity: 0.4;
+                animation: blink 1.4s infinite both;
+            }
+            
+            .typing-indicator span:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+            
+            .typing-indicator span:nth-child(3) {
+                animation-delay: 0.4s;
+            }
+            
+            @keyframes blink {
+                0% { opacity: 0.4; }
+                20% { opacity: 1; }
+                100% { opacity: 0.4; }
+            }
+            
+            .ai-chat-input {
+                display: flex;
+                padding: 12px;
+                border-top: 1px solid #e0e0e0;
+                background-color: #ffffff;
+            }
+            
+            .ai-chat-input input {
+                flex-grow: 1;
+                border: 1px solid #e0e0e0;
+                border-radius: 24px;
+                padding: 10px 16px;
+                font-size: 14px;
+                outline: none;
+                transition: border-color 0.2s;
+            }
+            
+            .ai-chat-input input:focus {
+                border-color: #1e88e5;
+                box-shadow: 0 0 0 2px rgba(30,136,229,0.2);
+            }
+            
+            .ai-chat-input button {
+                background-color: #1e88e5;
+                color: white;
+                border: none;
+                border-radius: 24px;
+                padding: 10px 20px;
+                margin-left: 8px;
+                cursor: pointer;
+                font-weight: 500;
+                transition: background-color 0.2s;
+            }
+            
+            .ai-chat-input button:hover {
+                background-color: #1976d2;
+            }
+        </style>
     `;
     
     // Add event listeners
@@ -979,8 +1158,100 @@ function addMessageToChat(message, sender) {
     const messageElement = document.createElement('div');
     
     messageElement.classList.add('message');
-    messageElement.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
-    messageElement.textContent = message;
+    
+    if (sender === 'user') {
+        messageElement.classList.add('user-message');
+        messageElement.textContent = message;
+    } else {
+        messageElement.classList.add('ai-message');
+        
+        // Create avatar and content container for AI messages
+        const avatarDiv = document.createElement('div');
+        avatarDiv.classList.add('ai-avatar');
+        avatarDiv.textContent = '🤖';
+        
+        const contentDiv = document.createElement('div');
+        contentDiv.classList.add('ai-content');
+        
+        // Process markdown-style formatting
+        let processedMessage = message
+            // Escape HTML
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+        
+        // Handle code blocks with ```
+        processedMessage = processedMessage.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+        
+        // Handle inline code with `
+        processedMessage = processedMessage.replace(/`([^`]+)`/g, '<code>$1</code>');
+        
+        // Handle headers: # Header text
+        processedMessage = processedMessage.replace(/^###\s+(.*?)$/gm, '<h3>$1</h3>');
+        processedMessage = processedMessage.replace(/^##\s+(.*?)$/gm, '<h3>$1</h3>');
+        processedMessage = processedMessage.replace(/^#\s+(.*?)$/gm, '<h3>$1</h3>');
+        
+        // Handle bold: **text** or __text__
+        processedMessage = processedMessage.replace(/\*\*(.*?)\*\*|__(.*?)__/g, function(match, p1, p2) {
+            return `<strong>${p1 || p2}</strong>`;
+        });
+        
+        // Handle italic: *text* or _text_
+        processedMessage = processedMessage.replace(/\b\*([^*]+)\*\b|\b_([^_]+)_\b/g, function(match, p1, p2) {
+            return `<em>${p1 || p2}</em>`;
+        });
+        
+        // Process lists
+        let inList = false;
+        let listType = '';
+        const lines = processedMessage.split('\n');
+        processedMessage = lines.map((line, index) => {
+            // Ordered list: 1. item
+            if (line.match(/^\d+\.\s+(.*?)$/)) {
+                const listItem = line.replace(/^\d+\.\s+(.*?)$/, '$1');
+                if (!inList || listType !== 'ol') {
+                    inList = true;
+                    listType = 'ol';
+                    return `<ol><li>${listItem}</li>`;
+                } else {
+                    return `<li>${listItem}</li>`;
+                }
+            }
+            // Unordered list: - item or * item
+            else if (line.match(/^[-*]\s+(.*?)$/)) {
+                const listItem = line.replace(/^[-*]\s+(.*?)$/, '$1');
+                if (!inList || listType !== 'ul') {
+                    inList = true;
+                    listType = 'ul';
+                    return `<ul><li>${listItem}</li>`;
+                } else {
+                    return `<li>${listItem}</li>`;
+                }
+            } 
+            // Not a list item
+            else {
+                if (inList) {
+                    inList = false;
+                    return `</${listType}>${line}`;
+                } else {
+                    return line;
+                }
+            }
+        }).join('\n');
+        
+        // Close list if still open
+        if (inList) {
+            processedMessage += `</${listType}>`;
+        }
+        
+        // Handle line breaks
+        processedMessage = processedMessage.replace(/\n/g, '<br>');
+        
+        contentDiv.innerHTML = processedMessage;
+        
+        messageElement.appendChild(avatarDiv);
+        messageElement.appendChild(contentDiv);
+    }
     
     // Insert before typing indicator
     messagesContainer.insertBefore(messageElement, document.getElementById('typing-indicator'));
@@ -991,21 +1262,6 @@ function addMessageToChat(message, sender) {
 
 async function fetchAiResponse(userMessage) {
     try {
-        // If you want to test without making actual API calls
-        if (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === 'YOUR_API_KEY_HERE') {
-            // Simulate API delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Return mock response based on user message
-            if (userMessage.toLowerCase().includes('help')) {
-                return "I can help you with quiz topics, provide explanations for difficult questions, or give you study tips for specific categories.";
-            } else if (userMessage.toLowerCase().includes('quiz')) {
-                return "Our quizzes cover various topics from General Knowledge to Science and Entertainment. Is there a specific category you're interested in?";
-            } else {
-                return "That's an interesting question! If you're looking for specific quiz help, try asking about a category or question type you're struggling with.";
-            }
-        }
-        
         // Make actual API call to OpenRouter using DeepSeek model
         const response = await fetch(OPENROUTER_API_URL, {
             method: "POST",
@@ -1020,7 +1276,7 @@ async function fetchAiResponse(userMessage) {
                 "messages": [
                     {
                         "role": "system",
-                        "content": "You are a helpful quiz assistant. Provide concise, educational answers to help users with their quiz questions and topics. Focus on explanations that teach concepts rather than just giving answers."
+                        "content": "You are a helpful quiz assistant. Provide concise, educational answers to help users with their quiz questions and topics. Focus on explanations that teach concepts rather than just giving answers. Use markdown formatting like **bold**, *italic*, and bullet points to make your answers easy to read and visually appealing."
                     },
                     {
                         "role": "user",
@@ -1038,7 +1294,18 @@ async function fetchAiResponse(userMessage) {
         return data.choices[0].message.content;
     } catch (error) {
         console.error("Error calling OpenRouter API:", error);
-        throw error;
+        
+        // Fallback to mock responses for testing or when API fails
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Return mock responses with markdown formatting for testing
+        if (userMessage.toLowerCase().includes('help')) {
+            return "I can help you with quiz topics in several ways:\n\n**Study Resources:**\n- Practice questions and explanations\n- Concept summaries\n- Memory techniques\n\n**Topic Areas:**\n1. General Knowledge\n2. Science subjects\n3. History and geography\n4. Literature and arts\n\nWhat specific area are you looking for help with?";
+        } else if (userMessage.toLowerCase().includes('quiz')) {
+            return "# Quiz Categories\n\nOur quizzes cover **various topics** including:\n\n- **Science**: Physics, Chemistry, Biology\n- **History**: World events, Ancient civilizations\n- **Literature**: Classic works, Authors, Literary devices\n- **Mathematics**: Algebra, Geometry, Calculus\n- **General Knowledge**: Current affairs, Geography\n\nWhich category interests you the most?";
+        } else {
+            return "That's an interesting question! Let me think about how I can help you best.\n\n**For effective quiz preparation**, I recommend:\n\n1. **Active recall** - test yourself regularly\n2. **Spaced repetition** - review material at increasing intervals\n3. **Concept mapping** - connect related ideas visually\n\nWould you like more specific strategies for a particular subject area?";
+        }
     }
 }
 
@@ -1216,7 +1483,7 @@ function updateExamStartButton() {
       localStorage.setItem('currentExamConfig', JSON.stringify({
         topics: selectedTopics,
         difficulty,
-        totalTime: 90 // minutes
+        totalTime: 60 // minutes
       }));
   
       navigateTo('exam-session');
@@ -1311,7 +1578,7 @@ function renderExamSessionPage() {
     const startTime = new Date(localStorage.getItem('examStartTime'));
     const currentTime = new Date();
     
-    // Calculate total seconds remaining (90 minutes = 5400 seconds)
+    // Calculate total seconds remaining (60 minutes = 3600 seconds)
     const totalSecondsAllowed = examConfig.totalTime * 60;
     const elapsedSeconds = Math.floor((currentTime - startTime) / 1000);
     let remainingSeconds = totalSecondsAllowed - elapsedSeconds;
@@ -1378,7 +1645,7 @@ function renderExamSessionPage() {
                     <button id="prev-question" ${currentExamQuestionIndex === 0 ? 'disabled' : ''}>Previous</button>
                     <button id="next-question" ${currentExamQuestionIndex === examQuestions.length - 1 ? 'disabled' : ''}>Next</button>
                     <button id="submit-exam" ${!mandatorySubmissionReached ? 'disabled' : ''} class="${mandatorySubmissionReached ? 'highlight' : ''}">
-                        ${mandatorySubmissionReached ? 'Submit Exam (Required)' : 'Submit Exam (Available after 50 minutes)'}
+                        ${mandatorySubmissionReached ? 'Submit Exam (Required)' : 'Submit Exam (Available after 30 minutes)'}
                     </button>
                 </div>
             </div>
