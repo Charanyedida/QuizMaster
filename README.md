@@ -43,11 +43,4 @@
 - [ ] User leaderboards  
 - [ ] Dark mode  
 - [ ] Voice-controlled AI queries  
-
-
-### Notes:  
-1. Replace `[Insert Deployment Link]` with your live URL (e.g., Netlify/Vercel).  
-2. Add actual screenshot paths (or create a `/screenshots` folder).  
-3. Customize the "Future Roadmap" with your planned features.  
-
-This README emphasizes **AI** while keeping it clean and action-oriented. Let me know if you'd like any tweaks! 🚀
+🚀
