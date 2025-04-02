@@ -620,6 +620,10 @@
     margin-right: 10px;
 }
 
+
+
+
+
 .exam-difficulty {
     margin-bottom: 30px;
 }
@@ -1004,10 +1008,97 @@
     margin-bottom: 15px;
 }
 
-.question-number {
-    font-weight: 700;
-    margin-bottom: 5px;
+.exam-navigation {
+    width: 100%;
+    background-color: #f8f9fa;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin: 20px 0;
 }
+
+.question-numbers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    padding: 5px;
+}
+
+.question-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    color: #4a5568;
+    background-color: #fff;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.question-number:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #cbd5e0;
+}
+
+.question-number.current {
+    background-color: #3182ce;
+    color: white;
+    border-color: #2b6cb0;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+}
+
+.question-number.answered {
+    background-color: #48bb78;
+    color: white;
+    border-color: #38a169;
+}
+
+.question-number.answered.current {
+    background: linear-gradient(135deg, #48bb78 0%, #3182ce 100%);
+    border-color: #2b6cb0;
+}
+
+/* Animation for current question indicator */
+@keyframes pulse {
+    0% { transform: scale(1.05); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1.05); }
+}
+
+.question-number.current {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .question-numbers {
+        gap: 8px;
+    }
+    
+    .question-number {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .question-number {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
 
 .question-category {
     font-size: 14px;
