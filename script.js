@@ -8,7 +8,7 @@
     
     // Add these near your other API constants
 const QUIZAPI_URL = "https://quizapi.io/api/v1/questions";
-const QUIZAPI_KEY = process.env.API_KEY; // Your key
+const QUIZAPI_KEY = "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"; // Your key
 const QUIZAPI_CATEGORIES = {
     "linux": "Linux",
     "bash": "Bash",
